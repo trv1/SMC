@@ -1,0 +1,37 @@
+.page-header
+  .fa.fa-list.fa-2x.li
+    Список специализаций поликлиники "#{Polyclinic.find(params[:polyclinic_id]).name}"
+
+%table.table.table-bordered.table-hover.table-condensed
+  %thead
+    %tr
+      %th.g Специализация
+      %th
+      - if !@current_user.blank?
+        - if @current_user.role!=0
+          %th
+          %th
+          %th
+
+  %tbody
+    - @posts.each do |post|
+      %tr
+        %td= post.name
+        %td
+          = link_to schedules_path(polyclinic_id: params[:polyclinic_id], post_id: post.id), class: "btn btn-primary" do
+            .fa.fa-arrow-circle-right
+            Перейти к выбору даты и врача
+        - if !@current_user.blank?
+          - if @current_user.role!=0
+            %td= link_to 'Показать', post_path(post, polyclinic_id: params[:polyclinic_id])
+            %td= link_to 'Редактировать', edit_post_path(post, polyclinic_id: params[:polyclinic_id])
+            %td= link_to 'Удалить', post, :method => :delete, :data => { :confirm => 'Вы уверены?' }
+- if !@current_user.blank?
+  - if @current_user.role!=0
+    %br
+
+    = link_to 'Новая специализация', new_post_path(polyclinic_id: params[:polyclinic_id]), class: "btn btn-primary"
+    \|
+= link_to polyclinics_path, class: "btn btn-warning" do
+  .fa.fa-arrow-circle-left
+  Вернуться к выбору поликлиники

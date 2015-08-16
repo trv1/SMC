@@ -1,0 +1,18 @@
+= form_for @doctor do |f|
+  - if @doctor.errors.any?
+    =error_messages_for(@doctor)
+
+  .form-group
+    = f.label :last_name
+    = f.text_field :last_name, class: "form-control"
+  .form-group
+    = f.label :first_name
+    = f.text_field :first_name, class: "form-control"
+  .form-group
+    = f.label :second_name
+    = f.text_field :second_name, class: "form-control"
+  .form-group
+    = label_tag('doctor[polyclinic_id]', Doctor.human_attribute_name(:polyclinic_id))
+    .br
+    = select_polyclinic('doctor[polyclinic_id]', @doctor.polyclinic_id)
+  .actions=f.submit 'Создать врача', class: "btn btn-primary"

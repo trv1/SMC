@@ -1,0 +1,25 @@
+%p#notice= notice
+
+%p
+  %b Поликлиника:
+  = @schedule.polyclinic.name
+%p
+  %b Специализация:
+  = @schedule.post.name
+%p
+  %b Врач:
+  = @schedule.doctor.last_name
+%p
+  %b День:
+  = @schedule.scheduleday.strftime("%d/%m/%y")
+%p
+  %b Прием с:
+  = @schedule.time_begin.to_formatted_s(:time)
+%p
+  %b Прием до:
+  = @schedule.time_end
+
+- if @current_user.role!=0
+  = link_to 'Редактировать', edit_schedule_path(@schedule)
+  \|
+= link_to 'Назад', schedules_path(polyclinic_id: @schedule.polyclinic.id, post_id: @schedule.post.id)

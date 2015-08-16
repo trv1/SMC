@@ -1,0 +1,6 @@
+%h1 Проверьте правильность выбранных данных
+
+= render 'form'
+
+\|
+= link_to 'Вернуться к выбору времени приема', routines_path(polyclinic_id: @current_routine.polyclinic.id, post_id: @current_routine.post.id, schedule_id: @current_routine.schedule.id), class: "btn btn-warning"

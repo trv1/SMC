@@ -1,0 +1,25 @@
+%h1 Список врачей
+
+%table
+  %thead
+    %tr
+      %th Фамилия
+      %th Имя
+      %th Отчество
+      %th
+      %th
+      %th
+
+  %tbody
+    - @doctors.each do |doctor|
+      %tr
+        %td= doctor.last_name
+        %td= doctor.first_name
+        %td= doctor.second_name
+        %td= link_to 'Показать', doctor
+        %td= link_to 'Редактировать', edit_doctor_path(doctor)
+        %td= link_to 'Удалить', doctor, :method => :delete, :data => { :confirm => 'Вы уверены?' }
+
+%br
+
+= link_to 'Новый врач', new_doctor_path

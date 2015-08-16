@@ -1,0 +1,27 @@
+%p
+  %b Специализация:
+  = @post.name
+%p
+  %b Список поликлиник для специализации "#{@post.name}":
+
+%table.table.table-bordered.table-hover.table-condensed
+  %thead
+    %tr
+      %th.g Наименование
+      %th.g Телефон
+      %th.g Адрес
+      %th.g Округ
+      %th.g Район
+
+  %tbody
+    - @polyclinics.each do |polyclinic|
+      %tr
+        %td
+          = link_to posts_path(polyclinic_id: polyclinic.id) do
+            "#{polyclinic.name}"
+        %td= polyclinic.phone
+        %td= polyclinic.address
+        %td= polyclinic.district
+        %td= polyclinic.locality
+
+= link_to 'Редактировать', edit_post_path(@post)

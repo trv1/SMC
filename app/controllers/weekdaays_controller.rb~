@@ -1,0 +1,74 @@
+class WeekdaaysController < ApplicationController
+  before_action :set_weekdaay, only: [:show, :edit, :update, :destroy]
+
+  # GET /weekdaays
+  # GET /weekdaays.json
+  def index
+    @weekdaays = Weekdaay.all
+  end
+
+  # GET /weekdaays/1
+  # GET /weekdaays/1.json
+  def show
+  end
+
+  # GET /weekdaays/new
+  def new
+    @weekdaay = Weekdaay.new
+  end
+
+  # GET /weekdaays/1/edit
+  def edit
+  end
+
+  # POST /weekdaays
+  # POST /weekdaays.json
+  def create
+    @weekdaay = Weekdaay.new(weekdaay_params)
+
+    respond_to do |format|
+      if @weekdaay.save
+        format.html { redirect_to @weekdaay, notice: 'Weekdaay was successfully created.' }
+        format.json { render :show, status: :created, location: @weekdaay }
+      else
+        format.html { render :new }
+        format.json { render json: @weekdaay.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /weekdaays/1
+  # PATCH/PUT /weekdaays/1.json
+  def update
+    respond_to do |format|
+      if @weekdaay.update(weekdaay_params)
+        format.html { redirect_to @weekdaay, notice: 'Weekdaay was successfully updated.' }
+        format.json { render :show, status: :ok, location: @weekdaay }
+      else
+        format.html { render :edit }
+        format.json { render json: @weekdaay.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /weekdaays/1
+  # DELETE /weekdaays/1.json
+  def destroy
+    @weekdaay.destroy
+    respond_to do |format|
+      format.html { redirect_to weekdaays_url, notice: 'Weekdaay was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_weekdaay
+      @weekdaay = Weekdaay.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def weekdaay_params
+      params.require(:user).permit(:name)
+    end
+end

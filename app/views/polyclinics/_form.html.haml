@@ -1,0 +1,20 @@
+= form_for @polyclinic do |f|
+  - if @polyclinic.errors.any?
+    =error_messages_for(@polyclinic)
+
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control"
+  .form-group
+    = f.label :phone
+    = f.text_field :phone, class: "form-control"
+  .form-group
+    = f.label :address
+    = f.text_field :address, class: "form-control"
+  .form-group
+    = f.label :district
+    = f.text_field :district, class: "form-control"
+  .form-group
+    = f.label :locality
+    = f.text_field :locality, class: "form-control"
+  .actions=f.submit 'Создать поликлинику', class: "btn btn-primary"

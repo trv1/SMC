@@ -1,0 +1,28 @@
+%p
+  %b Номер заявки:
+  = @request.number
+%p
+  %b Поликлиника:
+  = @request.polyclinic.name
+%p
+  %b Специализация:
+  = @request.post.name
+%p
+  %b Врач:
+  = @request.schedule.doctor.last_name+' '+@request.schedule.doctor.first_name+' '+@request.schedule.doctor.second_name
+%p
+  %b Дата приема: 
+  = "#{l(@request.schedule.scheduleday, format: :notime)}"
+%p
+  %b Время приема:
+  = "#{l(@request.routine.timing, format: :short)}"
+%p
+  %b Пользователь:
+  = @request.user.login
+%p
+  %b Дата заявки:
+  = @request.date
+
+= link_to 'Редактировать', edit_request_path(@request)
+\|
+= link_to 'Назад', requests_path

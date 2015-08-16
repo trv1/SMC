@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Специализация:
+  = @post.name
+
+%table.table.table-bordered.table-hover.table-condensed
+%thead
+  %tr
+    %th Наименование
+    %th Телефон
+    %th Адрес
+    %th Округ
+    %th Район
+
+%tbody
+  - @polyclinics.each do |polyclinic|
+    %tr
+      %td= polyclinic.name
+      %td= polyclinic.phone
+      %td= polyclinic.address
+      %td= polyclinic.district
+      %td= polyclinic.locality
+
+= link_to 'Редактировать', edit_post_path(@post)
+\|
+= link_to 'Назад', posts_path(polyclinic_id: @current_polyclinic.id)

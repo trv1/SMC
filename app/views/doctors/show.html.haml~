@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Фамилия:
+  = @doctor.last_name
+%p
+  %b Имя:
+  = @doctor.first_name
+%p
+  %b Отчество:
+  = @doctor.second_name
+%p
+  %b Поликлиника:
+  = @doctor.polyclinic
+
+= link_to 'Редактировать', edit_doctor_path(@doctor)
+\|
+= link_to 'Назад', doctors_path

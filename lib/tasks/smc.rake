@@ -1,0 +1,35 @@
+desc "Генерация данных smc"
+namespace :smc do
+  task :create=>:environment do
+    p1=Polyclinic.new(name: "ГБУЗ ГП № 22 филиал № 1 ДЗМ", phone: "(499) 128-39-67", address: "улица Цюрупы, дом 30/63", district: "Юго-Западный административный округ", locality: "район Черёмушки")
+    p1.save!
+    p2=Polyclinic.new(name: "ГБУЗ ГП № 107 ДЗМ", phone: "(499) 204-09-19; (499) 907-63-77; (499) 204-60-11", address: "улица Декабристов, дом 24", district: "Северо-Восточный административный округ", locality: "район Отрадное")
+    p2.save!
+    d1=Doctor.new(last_name: "Иванов", first_name: "Иван", second_name: "Иванович", polyclinic_id: 1)
+    d1.save!
+    d2=Doctor.new(last_name: "Петров", first_name: "Петр", second_name: "Петрович", polyclinic_id: 2)
+    d2.save!
+    pt1=Post.new(name: "Стоматолог")
+    pt1.save!
+    pt2=Post.new(name: "Хирург")
+    pt2.save!
+    pt3=Post.create(name: "Терапевт")
+    p1.posts << pt1
+    p1.posts << pt2
+    p2.posts << pt1
+    p2.posts << pt3
+    schedule1=Schedule.create(polyclinic_id: 1, post_id: 1, doctor_id: 1, scheduleday: Time.now, cabinet: "101", time_begin: Time.new(2014,1,1,8,0,0), time_end: Time.new(2014,1,31,16,0,0))
+    schedule2=Schedule.create(polyclinic_id: 2, post_id: 3, doctor_id: 2, scheduleday: Time.now+86400, cabinet: "102", time_begin: Time.new(2014,1,1,8,0,0), time_end: Time.new(2014,1,31,16,0,0))
+    schedule3=Schedule.create(polyclinic_id: 1, post_id: 2, doctor_id: 1, scheduleday: Time.now, cabinet: "301", time_begin: Time.new(2014,1,1,8,0,0), time_end: Time.new(2014,1,31,16,0,0))
+    for i in 1..Schedule.all.size
+      for j in Schedule.find(i).time_begin.to_i...Schedule.find(i).time_end.to_i
+        if j%900==0
+          Routine.create(polyclinic_id: Schedule.find(i).polyclinic_id, post_id: Schedule.find(i).post_id, schedule_id: Schedule.find(i).id, timing: Schedule.find(i).time_begin+j)
+        end
+      end
+    end	
+    user=User.create(last_name: "Тестовый", first_name: "Пользователь", second_name: "Сайта", birthday: Date.new(1990,1,1), residence: "q", sex: "м", passport: "4600100100", policy: "1020100100", email: "a1@a1.ru", login: "tps", password: "qwerty", role: 0)
+    moderator=User.create(last_name: "Тестовый", first_name: "Модератор", second_name: "Сайта", birthday: Date.new(1990,1,1), residence: "q", sex: "м", passport: "4600100101", policy: "1020100101", email: "a2@a2.ru", login: "tms", password: "qwerty", role: 1)
+    admin=User.create(last_name: "Тестовый", first_name: "Админ", second_name: "Сайта", birthday: Date.new(1990,1,1), residence: "q", sex: "м", passport: "4600100102", policy: "1020100102", email: "a3@a3.ru", login: "tas", password: "qwerty", role: 2)
+  end
+end

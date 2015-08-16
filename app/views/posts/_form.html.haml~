@@ -1,0 +1,15 @@
+= form_for @post do |f|
+  - if @post.errors.any?
+    #error_explanation
+      =error_messages_for(@post)
+    =error_messages_for(@post)
+
+  .form-group
+    = f.label :name
+    = f.text_field :name, class: "form-control"
+  .form-group
+    = label_tag('Поликлиника:')
+    .br
+    = Polyclinic.find(params[:polyclinic_id]).name
+  .actions
+    =f.submit 'Создать специализацию', class: "btn btn-primary"

@@ -1,0 +1,13 @@
+class CreateJoinTablePolyclinicPost < ActiveRecord::Migration
+  def up
+    create_join_table :polyclinics, :posts do |t|
+    end
+    add_foreign_key :polyclinics_posts, :polyclinics
+    add_foreign_key :polyclinics_posts, :posts
+    execute "ALTER TABLE polyclinics_posts ADD PRIMARY KEY (polyclinic_id, post_id);"
+  end
+  
+  def down
+    drop_join_table :polyclinics, :posts
+  end
+end

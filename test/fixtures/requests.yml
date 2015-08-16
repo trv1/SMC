@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: MyString
+  polyclinic_id: 
+  post_id: 
+  doctor_id: 
+  user_id: 
+
+two:
+  number: MyString
+  polyclinic_id: 
+  post_id: 
+  doctor_id: 
+  user_id: 

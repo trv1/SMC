@@ -1,0 +1,7 @@
+%h1 Редактирование элемента расписания
+
+= render 'form'
+
+= link_to 'Показать', schedule_path(@schedule, polyclinic_id: @schedule.polyclinic.id, post_id: @schedule.post.id)
+\|
+= link_to 'Назад', schedules_path(polyclinic_id: @schedule.polyclinic.id, post_id: @schedule.post.id)

@@ -1,0 +1,16 @@
+%p
+  %b Polyclinic:
+  = @routine.polyclinic
+%p
+  %b Post:
+  = @routine.post
+%p
+  %b Schedule:
+  = @routine.schedule
+%p
+  %b Timing:
+  = @routine.timing
+
+= link_to 'Edit', edit_routine_path(@routine)
+\|
+= link_to 'Back', routines_path

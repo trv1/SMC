@@ -1,0 +1,19 @@
+%p
+  %b Название:
+  = @polyclinic.name
+%p
+  %b Телефон:
+  = @polyclinic.phone
+%p
+  %b Адрес:
+  = @polyclinic.address
+%p
+  %b Округ:
+  = @polyclinic.district
+%p
+  %b Район:
+  = @polyclinic.locality
+
+= link_to 'Редактировать', edit_polyclinic_path(@polyclinic)
+\|
+= link_to 'Назад', polyclinics_path

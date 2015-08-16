@@ -1,0 +1,39 @@
+= form_for @request do |f|
+  - if @request.errors.any?
+    =error_messages_for(@request)
+
+  .form-group
+    = label_tag('request[polyclinic_id]', Request.human_attribute_name(:polyclinic_id))
+    .br
+    -#= select_polyclinic('request[polyclinic_id]', @request.polyclinic_id)
+    =Polyclinic.find(params[:polyclinic_id]).name
+  .form-group
+    = label_tag('request[post_id]', Request.human_attribute_name(:post_id))
+    .br
+    -#= select_post('request[post_id]', @request.post_id)
+    =Post.find(params[:post_id]).name
+  .form-group
+    = label_tag('request[doctor_id]', Request.human_attribute_name(:doctor_id))
+    .br
+    -#= select_schedule('request[schedule_id]', @request.schedule.doctor_id)
+    ="#{Doctor.find(Schedule.find(params[:schedule_id]).doctor_id).last_name}"+" "+"#{Doctor.find(Schedule.find(params[:schedule_id]).doctor_id).first_name}"+" "+"#{Doctor.find(Schedule.find(params[:schedule_id]).doctor_id).second_name}"
+  .form-group
+    = label_tag('request[schedule_id]', Request.human_attribute_name(:schedule_id))
+    .br
+    -#= select_schedule_day('request[schedule_id]', @request.schedule_id)
+    =l(Schedule.find(params[:schedule_id]).scheduleday, format: :notime)
+  .form-group
+    = label_tag('Время приема:')
+    .br
+    -#= select_routine('request[routine_id]', @request.routine_id.to_formatted_s(:time))
+    =l(Routine.find(params[:routine_id]).timing, format: :short)
+  .actions
+    =f.hidden_field :polyclinic_id
+    =f.hidden_field :post_id
+    =f.hidden_field :schedule_id
+    =f.hidden_field :routine_id
+    =f.submit 'Создать заявку', class: "btn btn-primary"
+    \|
+    = link_to routines_path(polyclinic_id: params[:polyclinic_id], post_id: params[:post_id], schedule_id: params[:schedule_id]), class: "btn btn-warning" do
+      .fa.fa-arrow-circle-left
+      Вернуться к выбору времени приема

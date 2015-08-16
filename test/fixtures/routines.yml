@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  polyclinic_id: 
+  post_id: 
+  schedule_id: 
+  timing: 2015-04-24 12:21:25
+
+two:
+  polyclinic_id: 
+  post_id: 
+  schedule_id: 
+  timing: 2015-04-24 12:21:25

@@ -1,0 +1,29 @@
+%h1 Выберите время приема
+
+.row
+  - i=0
+  - @routines.each do |routine|
+    - i=i+1
+    - if i/5-i==0.0
+      .row
+    .col-sm-2
+      - if Request.all.where(polyclinic_id: routine.polyclinic.id, post_id: routine.post.id, schedule_id: routine.schedule.id, routine_id: routine.id).to_a.blank?
+        - if @current_user.blank?
+          = link_to login_path, class: "btn btn-success btn-sunflower animated zoomIn" do
+            .fa.fa-check-circle
+            #{l(routine.timing, format: :short)} - свободно
+        - else
+          = link_to new_request_path(polyclinic_id: routine.polyclinic.id, post_id: routine.post.id, schedule_id: routine.schedule.id, routine_id: routine.id), class: "btn btn-success btn-sunflower animated zoomIn" do
+            .fa.fa-check-circle
+            #{l(routine.timing, format: :short)} - свободно
+      - else
+        .visit
+          = link_to login_path, class: "btn btn-danger disabled" do
+            .fa.fa-minus-circle
+            #{l(routine.timing, format: :short)} - занято
+%br
+
+= link_to schedules_path(polyclinic_id: @routines.first.polyclinic.id, post_id: @routines.first.post.id), class: "btn btn-warning" do
+  .fa.fa-arrow-circle-left
+  Вернуться к выбору врача и даты
+%br

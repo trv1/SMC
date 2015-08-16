@@ -1,0 +1,7 @@
+class Request < ActiveRecord::Base
+  belongs_to :polyclinic
+  belongs_to :post
+  belongs_to :schedule
+  belongs_to :routine
+  belongs_to :user
+end

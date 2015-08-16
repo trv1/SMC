@@ -1,0 +1,46 @@
+%p#notice= notice
+.page-header
+  .fa.fa-list.fa-2x.li
+    Выбор врача по специализации "#{@schedules.first.post.name}"
+
+%table.table.table-bordered.table-hover.table-condensed
+  %thead
+    %tr
+      %th Врач
+      %th Кабинет
+      %th День
+      %th Интервал приема
+      - if !@current_user.blank? && @current_user.role==0
+        %th
+      - if !@current_user.blank?
+        - if @current_user.role!=0 
+          %th
+          %th
+          %th
+
+  %tbody
+    - @schedules.each do |schedule|
+      %tr
+        %td= schedule.doctor.last_name+' '+schedule.doctor.first_name+' '+schedule.doctor.second_name
+        %td= schedule.cabinet
+        %td= l(schedule.scheduleday, format: :notime)
+        %td= "#{l(schedule.time_begin+14400, format: :short)}"+"-"+"#{l(schedule.time_end+14400, format: :short)}"
+        - if @current_user.blank? || (!@current_user.blank? && @current_user.role==0)
+          %td
+            = link_to routines_path(polyclinic_id: schedule.polyclinic.id, post_id: schedule.post.id, schedule_id: schedule.id), class: "btn btn-warning" do
+              .fa.fa-arrow-circle-right
+              Выбрать время
+        - if !@current_user.blank?
+          - if @current_user.role!=0
+            %td= link_to 'Показать', schedule
+            %td= link_to 'Редактировать', edit_schedule_path(schedule)
+            %td= link_to 'Удалить', schedule, :method => :delete, :data => { :confirm => 'Вы уверены?' }
+- if !@current_user.blank?
+  - if @current_user.role!=0
+    %br
+
+    = link_to 'Новый элемент расписания', new_schedule_path(polyclinic_id: @schedules.first.polyclinic.id, post_id: @schedules.first.post.id)
+    \|
+= link_to posts_path(polyclinic_id: @schedules.first.polyclinic.id), class: "btn btn-warning" do
+  .fa.fa-arrow-circle-left
+  Вернуться к выбору специализации

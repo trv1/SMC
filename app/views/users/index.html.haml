@@ -1,0 +1,39 @@
+%h1 Список пациентов
+
+%table.table-bordered.table-hover.table-condensed
+  %thead
+    %tr
+      %th Фамилия
+      %th Имя
+      %th Отчество
+      %th День рождения
+      %th Место жительства
+      %th Пол
+      %th Серия и номер паспорта
+      %th Серия и номер страхового полиса
+      %th Адрес электронной почты
+      %th Логин
+      %th
+      %th
+      %th
+
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.last_name
+        %td= user.first_name
+        %td= user.second_name
+        %td= user.birthday
+        %td= user.residence
+        %td= user.sex
+        %td= user.passport
+        %td= user.policy
+        %td= user.email
+        %td= user.login
+        %td= link_to 'Показать', user
+        %td= link_to 'Редактировать', edit_user_path(user)
+        %td= link_to 'Удалить', user, :method => :delete, :data => { :confirm => 'Вы уверены?' }
+
+%br
+
+= link_to 'Новый пациент', new_user_path

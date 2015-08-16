@@ -1,0 +1,46 @@
+= form_for @user do |f|
+  - if @user.errors.any?
+    =error_messages_for(@user)
+  
+  .form-group
+    = f.label :last_name
+    = f.text_field :last_name, class: "form-control"
+  .form-group
+    = f.label :first_name
+    = f.text_field :first_name, class: "form-control"
+  .form-group
+    = f.label :second_name
+    = f.text_field :second_name, class: "form-control"
+  .form-group
+    = f.label :birthday
+    = f.date_select :birthday, class: "form-control", start_year: 2015, end_year: 1915, :prompt => { :day => 'День', :month => 'Месяц', :year => 'Год' }
+  .form-group
+    = f.label :residence
+    = f.text_field :residence, class: "form-control"
+  .form-group
+    = f.label "Мужской"
+    = f.radio_button :sex, 'м', class: "radio"
+    = f.label "Женский"
+    = f.radio_button :sex, 'ж', class: "radio"
+  .form-group
+    = f.label :passport
+    ="(Введите 10 цифр без пробела)"
+    = f.text_field :passport, class: "form-control"
+  .form-group
+    = f.label :policy
+    ="(Введите 10 цифр без пробела)"
+    = f.text_field :policy, class: "form-control"
+  .form-group
+    = f.label :email
+    = f.text_field :email, class: "form-control"
+  .form-group
+    = f.label :login
+    = f.text_field :login, class: "form-control"
+  .form-group
+    = f.label :password
+    = f.password_field :password, class: "form-control"
+  .form-group
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, class: "form-control"
+  .actions
+    = f.submit 'Зарегистрироваться', class: "btn btn-primary"

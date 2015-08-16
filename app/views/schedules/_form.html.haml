@@ -1,0 +1,34 @@
+= form_for @schedule do |f|
+  - if @schedule.errors.any?
+    =error_messages_for(@schedule)
+
+  .form-group
+    = label_tag('schedule[polyclinic_id]', Schedule.human_attribute_name(:polyclinic_id))
+    .br
+    = select_polyclinic('schedule[polyclinic_id]', @schedule.polyclinic_id)
+  .form-group
+    = label_tag('schedule[post_id]', Schedule.human_attribute_name(:post_id))
+    .br
+    = select_post('schedule[post_id]', @schedule.post_id)
+  .form-group
+    = label_tag('schedule[doctor_id]', Schedule.human_attribute_name(:doctor_id))
+    .br
+    = select_doctor('schedule[doctor_id]', @schedule.doctor_id)
+  .form-group
+    = f.label :scheduleday
+    .br
+    = f.date_select :scheduleday, class: "form-control"
+    -#, start_year: 2015, end_year: 1915, :prompt => { :day => 'День', :month => 'Месяц', :year => 'Год' }
+  .form-group
+    = f.label :cabinet
+    = f.text_field :cabinet
+  .form-group
+    = f.label :time_begin
+    .br
+    = f.time_select :time_begin
+  .form-group
+    = f.label :time_end
+    .br
+    = f.time_select :time_end
+  .actions
+    =f.submit 'Создать элемент расписания', class: "btn btn-primary"

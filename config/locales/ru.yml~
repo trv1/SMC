@@ -1,0 +1,73 @@
+ru:
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
+      short: "%H:%M"
+      notime: "%m/%d/%Y"
+  activerecord:
+    attributes:
+      request:
+        number: Номер заявки
+        polyclinic_id: Поликлиника
+        post_id: Специализация
+        schedule_id: День приема
+        schedule.doctor_id: Врач
+        user_id: Пользователь
+        date: Дата заявки
+      doctor:
+        last_name: Фамилия
+        first_name: Имя
+        second_name: Отчество
+        polyclinic_id: Поликлиника
+      schedule:
+        polyclinic_id: Поликлиника
+        post_id: Специализация
+        doctor_id: Врач
+        scheduleday: День приема
+        time_begin: Прием с
+        time_end: Прием до
+      post:
+        name: Название специализации
+        polyclinic_id: Наименование поликлиники
+      polyclinic:
+        name: Наименование
+        phone: Телефон
+        address: Адрес
+        district: Округ
+        locality: Район
+      user:
+        last_name: Фамилия
+        first_name: Имя
+        second_name: Отчество
+        birthday: День рождения
+        residence: Место проживания 
+        sex: Пол
+        passport: Серия и номер паспорта
+        policy: Серия и номер страхового полиса
+        email: Адрес электронной почты
+        login: Логин
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+    models:
+      user: Пользователь
+      polyclinic: Поликлиника
+      post: Специализация
+      schedule: Элемент расписания
+      doctor: Врач
+      request: Заявка
+  views:
+    pagination:
+      first: "&laquo; Первая"
+      last: "Последняя &raquo;"
+      previous: "&lsaquo; Предыдущая"
+      next: "Следующая &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "%{entry_name} не найдена"
+          one: "Отображение <b>1</b> %{entry_name}"
+          other: "Отображение <b>all %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Отображение %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> из <b>%{total}</b> в общем"

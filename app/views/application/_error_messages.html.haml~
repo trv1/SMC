@@ -1,0 +1,7 @@
+-if object.errors.any?
+  .panel.panel-danger
+    .panel-heading
+  .panel-body
+    %ul
+      -object.errors.full-messages.each do |msg|
+        %li=msg

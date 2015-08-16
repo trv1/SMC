@@ -1,0 +1,42 @@
+%p#notice= notice
+
+%p
+  %b Last name:
+  = @user.last_name
+%p
+  %b First name:
+  = @user.first_name
+%p
+  %b Second name:
+  = @user.second_name
+%p
+  %b Birthday:
+  = @user.birthday
+%p
+  %b Residence:
+  = @user.residence
+%p
+  %b Sex:
+  = @user.sex
+%p
+  %b Passport:
+  = @user.passport
+%p
+  %b Policy:
+  = @user.policy
+%p
+  %b Email:
+  = @user.email
+%p
+  %b Login:
+  = @user.login
+%p
+  %b Password:
+  = @user.password
+%p
+  %b Role:
+  = @user.role
+
+= link_to 'Edit', edit_user_path(@user)
+\|
+= link_to 'Back', users_path
