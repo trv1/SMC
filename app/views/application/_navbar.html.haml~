@@ -29,6 +29,7 @@
         -else
           %li
             %span.navbar-text=@current_user.login
+          %li
             = link_to logout_path, data:{method: :patch} do
               Выйти
               .fa.fa-sign-out
